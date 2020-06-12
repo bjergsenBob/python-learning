@@ -15,7 +15,7 @@ from matplotlib import pyplot as plt
 #读取数据
 def get_data_set():
     
-    data_set = pd.read_csv('D:\py\习题\机器学习\linear regression\Salary_Data.csv')
+    data_set = pd.read_csv('Salary_Data.csv')
     
     return data_set
     
@@ -58,6 +58,7 @@ def get_items():
             print(t)
             # print(monitor_df)
             plt.scatter(monitor_df.cnt,monitor_df.t)
+            plt.show()
             #print(h0)
             #print(data_set.y)
             #break
@@ -74,6 +75,8 @@ s = time.time()
 get_items()
 e = time.time()
 print(e-s)
+
+
 
     
 
