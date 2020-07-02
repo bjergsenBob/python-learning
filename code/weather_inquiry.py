@@ -66,7 +66,6 @@ def get_message():
     if get_close_message() == '0' and get_work_message() == '0':
         
         msg = '上下班时间都不会下雨熬，男生可以不带伞，女生可以带着遮阳辣'
-        
     print(msg)
 get_message()
     
