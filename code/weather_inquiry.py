@@ -68,7 +68,6 @@ def get_message():
         msg = '上下班时间都不会下雨熬，男生可以不带伞，女生可以带着遮阳辣'
         
     print(msg)
-    
 get_message()
     
     
