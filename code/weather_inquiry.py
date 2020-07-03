@@ -15,7 +15,7 @@ r = requests.get(url)
 
 t = r.json()
 
-hourly_weather = t['data'][2]['hours']  #这里应该改成0
+hourly_weather = t['data'][1]['hours']  #这里应该改成0
 
 df = pd.DataFrame(hourly_weather)
 
@@ -67,6 +67,7 @@ def get_message():
         
         msg = '上下班时间都不会下雨熬，男生可以不带伞，女生可以带着遮阳辣'
     print(msg)
+
 get_message()
     
     
