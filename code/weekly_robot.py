@@ -14,6 +14,7 @@ import datetime
 import schedule
 
 import time
+ 
 
 
 url = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=51e02d90-139c-4515-b839-4c8ff3013b03'
@@ -43,7 +44,38 @@ def send_msg(content):
 
     print(r.text)
 
+def get_rain_message():
+    
+    weather_url = 'https://tianqiapi.com/api?version=v1&appid=86739165&appsecret=FqnR56Jl&cityid=101020100'
+    
+    r = requests.get(weather_url).json()
+    
+    # today_wea_img = r['data'][0]['wea_img']
+    
+    tomorrow_wea_img = r['data'][1]['wea_img']
+    
+    # if today_wea_img = 'yu':
+        
+    #     today_message = '今天会下雨嗷，记得带伞'
+        
+    if tomorrow_wea_img == 'yu':
+        
+        message = '明天会下雨嗷，记得带伞'
+        
+    # else：
+    #     message = '明天不会下雨嗷'
+        
+    return message
+        
+    
+def weather_time():
+    
+    content = get_rain_message()
+    
+    send_msg(content)
+    
 
+    
 def lunch_time(content='中午点外卖辣！！！'):
     
     dayOfWeek = get_current_time()
@@ -81,6 +113,7 @@ def register():
 
     schedule.every().thursday.at('17:00').do(weekly_time,content='算了，不写好像也没啥问题')
     
+    schedule.every(1).day.at('19:00').do(weather_time)
 
 def start_scheduler():
     

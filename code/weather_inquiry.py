@@ -9,19 +9,19 @@ import requests
 
 import pandas as pd
 
-url = 'http://www.tianqiapi.com/api?version=v9&appid=23035354&appsecret=8YvlPNrz'
+url = 'https://tianqiapi.com/api?version=v1&appid=86739165&appsecret=FqnR56Jl&cityid=101020100'
 
 r = requests.get(url)
 
 t = r.json()
 
-hourly_weather = t['data'][1]['hours']  #这里应该改成0
+hourly_weather = t['data'][0]['hours']  #这里应该改成0
 
 df = pd.DataFrame(hourly_weather)
 
-working_time = df.iloc[[0,1,2]]
+working_time = df.iloc[[0,1]]
 
-closing_time = df.iloc[[11,12,13,14]]
+closing_time = df.iloc[[3,4]]
 
 working_time_weather = working_time.loc[:,'wea_img'].tolist()
 
@@ -65,7 +65,7 @@ def get_message():
         
     if get_close_message() == '0' and get_work_message() == '0':
         
-        msg = '上下班时间都不会下雨熬，男生可以不带伞，女生可以带着遮阳辣'
+        msg = '上下班时间都不会下雨熬'
     print(msg)
 
 get_message()
