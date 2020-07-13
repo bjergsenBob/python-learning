@@ -91,7 +91,16 @@ def get_fund_message():
     
     data_pd = pd.DataFrame(fund_data)
     
-    print(data_pd)
+    data = data_pd.loc[[0,1,2],['changePercent','name','price']]
+    
+    return data
+
+#发送股票信息
+def fund_time():
+    
+    content1 = str(data.iloc[0,1])+'当前大盘为：'+str(round(data.iloc[0,2],2))+',同比增长'+str(data.iloc[0,0])+'%'
+    
+    send_msg(content1)
 
 #吃饭提醒   
 def lunch_time(content='中午点外卖辣！！！'):
@@ -134,6 +143,8 @@ def register():
     schedule.every().thursday.at('17:00').do(weekly_time,content='算了，不写好像也没啥问题')
     
     schedule.every(1).day.at('19:00').do(weather_time)
+    
+    schedule.every(1).day.at('14:00').do(fund_time)
 
 def start_scheduler():
     
